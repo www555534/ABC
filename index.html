@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>你爱我吗</title>
+</head>
+<body>
+<button>不爱</button>
+
+<video id="video" width="640"
+height="480" autoplay></video>
+<button id="snap">爱</button>
+<canvas id="canvas" width="640"
+height="480"></canvas>
+
+
+<script>
+// 获取视频和画布元素
+var video =
+document.getElementById('video');
+var canvas =
+document.getElementById('canvas');
+var context =
+canvas.getContext('2d');
+var snapButton =
+document.getElementById('snap');
+
+
+// 获取用户媒体设备（前置摄像头） 
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        // 将摄像头的视频流绑定到video元素上
+        video.srcObject = stream; })
+    .catch(function(error) {
+        console.error("无法访问摄像头", error); });
+// 捕捉画面并显示在画布上
+snapButton.addEventListener('click', function() {
+    context.drawImage(video, 0, 0, 640, 480);
+    });
+  </script>
+  
+  
+  </body>
+</html>
